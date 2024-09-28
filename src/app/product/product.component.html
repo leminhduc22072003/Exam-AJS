@@ -1,0 +1,33 @@
+<div class="current-user">
+  Current User: TestTest.com
+</div>
+<button (click)="addProduct()">Add Product</button>
+
+<table *ngIf="!selectedProduct">
+  <tr>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let product of products">
+    <td>{{ product.name }}</td>
+    <td>${{ product.price.toFixed(2) }}</td>
+    <td>
+      <button (click)="editProduct(product)">Edit</button>
+      <button (click)="deleteProduct(product.id)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<div *ngIf="selectedProduct" class="selected-product-form">
+  <div>
+    <label>Product Name:</label>
+    <input [(ngModel)]="selectedProduct.name" />
+  </div>
+  <div>
+    <label>Product Price:</label>
+    <input type="number" [(ngModel)]="selectedProduct.price" />
+  </div>
+  <button (click)="saveProduct()">Save</button>
+  <button (click)="cancel()">Cancel</button>
+</div>
